@@ -23,3 +23,5 @@ tramp
 /var/pcache
 .emacs.desktop*
 ac-comphist.dat
+ensime
+

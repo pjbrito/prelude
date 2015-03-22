@@ -3,6 +3,8 @@
                             go-eldoc
                             go-autocomplete
                             dockerfile-mode
+                            sbt-mode
+                            ensime
                             ;;desktop-save-mode
                             ;;battery
                             ))
@@ -26,6 +28,28 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (setq indent-line-function 'insert-tab)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;;  Scala
+;;
+;; (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
+
+;; from: https://github.com/hvesalai/scala-mode2
+(add-hook 'scala-mode-hook '(lambda ()
+                              (require 'whitespace)
+                              
+                              ;; clean-up whitespace at save
+                              (make-local-variable 'before-save-hook)
+                              (add-hook 'before-save-hook 'whitespace-cleanup)
+
+                              ;; turn on highlight. To configure what is highlighted, customize
+                              ;; the *whitespace-style* variable. A sane set of things to
+                              ;; highlight is: face, tabs, trailing
+                              (whitespace-mode)
+
+                              (ensime-scala-mode-hook)
+                              ))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
